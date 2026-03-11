@@ -1,7 +1,7 @@
 ---
 name: rebirthnote
-description: Operate RebirthNote notes via CLI and MCP — search, create, view, update, delete cards; manage tags, boxes, spaces, todos, prompts; setup CLI/MCP. One skill entry point; see sub-skills for per-operation details.
-version: 1.0.0
+description: Operate RebirthNote notes via CLI and MCP — search, create, view, update, delete cards; manage tags, boxes, spaces, todos, prompts; setup CLI/MCP. One skill entry point; see references/ for per-operation details (progressive disclosure).
+version: 1.1.0
 tags: [rebirthnote, notes, cli, mcp, zettelkasten]
 ---
 
@@ -27,23 +27,30 @@ tags: [rebirthnote, notes, cli, mcp, zettelkasten]
 
 ---
 
-## 操作索引（先看本表，再按需读具体 skill）
+## 操作索引（渐进披露：先读本表，再按需打开 references 下对应 md）
 
-| 操作 | 说明 | 详细说明位置 |
-|------|------|--------------|
-| **搜索卡片** | 按关键词、标签、盒子、类型、日期搜索 | 详见 `skills/search-cards/SKILL.md` |
-| **创建卡片** | 创建富文本 / 思维导图 / Mermaid 卡片，内容用 Markdown | 详见 `skills/create-card/SKILL.md` |
-| **查看卡片** | 查看单张或批量卡片，内容转为 Markdown | 详见 `skills/view-card/SKILL.md` |
-| **更新卡片** | 修改标题、内容、标签、盒子、收藏状态 | 详见 `skills/update-card/SKILL.md` |
-| **删除/恢复卡片** | 软删除、恢复、永久删除 | 详见 `skills/delete-card/SKILL.md` |
-| **标签管理** | 列出/创建/删除/重命名标签，查看标签下卡片 | 详见 `skills/manage-tags/SKILL.md` |
-| **盒子管理** | 列出/创建盒子，查看盒子下卡片与统计 | 详见 `skills/manage-boxes/SKILL.md` |
-| **空间管理** | 列出空间、切换当前空间 | 详见 `skills/manage-spaces/SKILL.md` |
-| **待办管理** | 搜索待办、按状态筛选、统计 | 详见 `skills/manage-todo/SKILL.md` |
-| **提示词模板** | 列出/创建/查看/更新/删除本地提示词模板 | 详见 `skills/manage-prompts/SKILL.md` |
-| **CLI/MCP 配置** | 构建、数据库路径、MCP 启动与配置生成 | 详见 `skills/setup-cli/SKILL.md` |
+| 操作 | 说明 | 何时读 | 详细说明位置 |
+|------|------|--------|--------------|
+| **搜索卡片** | 按关键词、标签、盒子、类型、日期搜索 | 用户要查找/筛选笔记 | `skills/references/search-cards.md` |
+| **创建卡片** | 创建卡片，内容用 Markdown；类型仅五种 | 用户要新建笔记 | `skills/references/create-card.md` |
+| **查看卡片** | 查看单张或批量卡片，内容转为 Markdown | 用户要读某张卡片全文或元数据 | `skills/references/view-card.md` |
+| **更新卡片** | 修改标题、内容、标签、盒子、收藏状态 | 用户要改已有笔记 | `skills/references/update-card.md` |
+| **删除/恢复卡片** | 软删除、恢复、永久删除 | 用户要删或恢复笔记 | `skills/references/delete-card.md` |
+| **标签管理** | 列出/创建/删除/重命名标签，查看标签下卡片 | 用户要管标签 | `skills/references/manage-tags.md` |
+| **盒子管理** | 列出/创建盒子，查看盒子下卡片与统计 | 用户要管盒子 | `skills/references/manage-boxes.md` |
+| **空间管理** | 列出空间、切换当前空间 | 用户要切换空间 | `skills/references/manage-spaces.md` |
+| **待办管理** | 搜索待办、按状态筛选、统计 | 用户要管任务列表 | `skills/references/manage-todo.md` |
+| **提示词模板** | 列出/创建/查看/更新/删除本地提示词模板 | 用户要管 CLI 本地 prompts | `skills/references/manage-prompts.md` |
+| **CLI/MCP 配置** | 构建、数据库路径、MCP 启动与配置生成 | 用户要搭建或排错 CLI/MCP | `skills/references/setup-cli.md` |
 
-**使用方式**：先根据用户意图在上表找到对应操作，再打开该操作对应的 `skills/<操作目录>/SKILL.md` 获取完整参数、示例与边界。
+**使用方式**：只把本 `SKILL.md` 放进上下文即可起步；**仅当**上表中「何时读」匹配当前任务时，再打开对应 `skills/references/<名>.md`，避免一次性加载全部细节。
+
+**目录约定**（与 skill-name 标准对齐，无额外 rebirthnote 包一层）：
+
+- `skills/SKILL.md` — 本文件，唯一入口
+- `skills/references/*.md` — 按操作拆分的详细说明（上表）
+- `skills/scripts/` — 可执行脚本（Python/Bash 等），按需添加
+- `skills/assets/` — 模板与静态资源，按需添加
 
 ---
 
@@ -77,12 +84,13 @@ tags: [rebirthnote, notes, cli, mcp, zettelkasten]
 
 ## 示例（高层）
 
-1. **「帮我查最近 10 条笔记」** → 用「搜索卡片」，详见 `skills/search-cards/SKILL.md`，CLI: `rebirth card search --limit 10` 或 MCP: `card_search`。
-2. **「新建一篇标题为 X 的 Markdown 笔记」** → 用「创建卡片」，详见 `skills/create-card/SKILL.md`，CLI: `rebirth card create --name X --content "..."` 或 MCP: `card_create`。
-3. **「把这张卡片移入某盒子」** → 用「更新卡片」，详见 `skills/update-card/SKILL.md`，CLI: `rebirth card update <id> --box <boxId>` 或 MCP: `card_update`。
+1. **「帮我查最近 10 条笔记」** → 再读 `skills/references/search-cards.md`；CLI: `rebirth card search --limit 10` 或 MCP: `card_search`。
+2. **「新建一篇标题为 X 的 Markdown 笔记」** → 再读 `skills/references/create-card.md`；CLI: `rebirth card create --name X --content "..."` 或 MCP: `card_create`。
+3. **「把这张卡片移入某盒子」** → 再读 `skills/references/update-card.md`；CLI: `rebirth card update <id> --box <boxId>` 或 MCP: `card_update`。
 
 ---
 
 ## 版本
 
-- 1.0.0：统一入口 + 11 个子 skill 索引（search/create/view/update/delete + tags/boxes/spaces/todo/prompts + setup-cli）。
+- 1.1.0：入口仍为根 `SKILL.md`；按操作细节迁至 `references/*.md`，并约定 `scripts/`、`assets/`。
+- 1.0.0：统一入口 + 11 个子目录各一 `SKILL.md`（已废弃该布局）。
