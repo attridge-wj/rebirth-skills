@@ -25,9 +25,12 @@ rebirth tag cards <tag-id> --limit 20
 - `tag_create` — Parameters: `name`, `color?`, `parentId?`
 - `tag_cards` — Parameters: `tagId`, `limit?`
 
+> **注意**: `tag_delete` 和 `tag_rename` 仅在 CLI 中可用，MCP 不提供这两个工具。
+
 ### Data Model
 
 - Table: `sys_tag` with hierarchical support (`parentId`, `level`)
 - Cards link to tags via `sys_card_base.tagIds` (comma-separated UUID string)
 - Tag search uses `LIKE '%tagId%'`
 - Tags are scoped to a space (`spaceId`)
+- **按标签筛选卡片时，自动包含该标签的所有子孙标签**（通过内存遍历标签树展开）

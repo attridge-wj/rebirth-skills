@@ -67,9 +67,9 @@ tags: [rebirthnote, notes, cli, mcp, zettelkasten]
 - `rebirth mcp stdio` / `mcp serve` / `mcp config --cursor` / `mcp config --claude-code`
 - `rebirth info` / `rebirth stats`
 
-### MCP Tools（18 个）
+### MCP Tools（15 个）
 
-`card_create`, `card_search`, `card_get`, `card_batch_get`, `card_update`, `card_delete`, `card_restore`, `tag_list`, `tag_create`, `tag_cards`, `box_list`, `box_cards`, `space_list`, `todo_search`, `prompt_list`, `prompt_get`, `stats`
+`card_create`, `card_search`, `card_get`, `card_batch_get`, `card_update`, `card_delete`, `card_restore`, `tag_list`, `tag_create`, `tag_cards`, `box_list`, `box_cards`, `space_list`, `todo_search`, `prompt_list`
 
 ---
 

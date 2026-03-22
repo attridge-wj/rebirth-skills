@@ -58,7 +58,7 @@ rebirth mcp config --claude-code  # → Claude Code MCP config JSON
 ### Claude Code MCP Config
 
 ```json
-{ "mcpServers": { "rebirthnote": { "command": "rebirth", "args": ["mcp", "stdio"] } } }
+{ "mcpServers": { "rebirthnote": { "command": "rebirth-mcp", "args": [] } } }
 ```
 
 ### System Info
